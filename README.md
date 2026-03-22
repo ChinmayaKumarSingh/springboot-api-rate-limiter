@@ -1,10 +1,11 @@
 # 🚀 Spring Boot API Rate Limiter
 
-
-
-
-
-\
+![Java](https://img.shields.io/badge/Java-17-orange)
+![Spring Boot](https://img.shields.io/badge/SpringBoot-Backend-green)
+![Maven](https://img.shields.io/badge/Maven-Build-blue)
+![Docker](https://img.shields.io/badge/Docker-Containerization-blue)
+![Cloud](https://img.shields.io/badge/Deployed%20on-Render-purple)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
 A lightweight **API Rate Limiter** built using **Java and Spring Boot** to protect backend services from excessive API requests.
 
@@ -46,7 +47,7 @@ Refresh the page multiple times to see the **rate limiter blocking excessive req
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```
 springboot-api-rate-limiter
@@ -71,19 +72,47 @@ springboot-api-rate-limiter
 └── README.md
 ```
 
+---
 
-# ⚙️ How Rate Limiting Works
+# 🏗 Architecture Diagram
 
-The application tracks how many requests are coming from a client within a defined time window.
+```
+Client / Browser
+        │
+        │ HTTP Request
+        ▼
+Spring Boot Controller
+(ApiController)
+        │
+        ▼
+RateLimiterService
+(Request Counting Logic)
+        │
+        ▼
+Response
+(API Allowed / Blocked)
+```
 
-### Flow
+---
 
-1️⃣ Client sends request
-2️⃣ Server checks request count
-3️⃣ If limit not exceeded → allow request
-4️⃣ If limit exceeded → block request
+# 🔄 API Request Flow
 
-This prevents API flooding and protects backend services.
+```
+Client Request
+      │
+      ▼
+Check Request Count
+      │
+      ├── Within Limit
+      │        │
+      │        ▼
+      │   Allow Request
+      │
+      └── Limit Exceeded
+               │
+               ▼
+        Block Request
+```
 
 ---
 
@@ -103,11 +132,15 @@ https://springboot-api-rate-limiter.onrender.com/api/test
 
 ### Successful Request
 
+```
 API request successful 🚀
+```
 
 ### Limit Exceeded
 
+```
 Too many requests ❌
+```
 
 ---
 
@@ -117,6 +150,7 @@ The application is containerized using Docker and deployed on Render.
 
 Dockerfile used:
 
+```
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY pom.xml .
@@ -127,6 +161,7 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 ENTRYPOINT ["java","-jar","app.jar"]
+```
 
 ---
 
@@ -134,19 +169,27 @@ ENTRYPOINT ["java","-jar","app.jar"]
 
 Clone repository
 
+```
 git clone https://github.com/ChinmayaKumarSingh/springboot-api-rate-limiter.git
+```
 
 Navigate to project
 
+```
 cd springboot-api-rate-limiter
+```
 
 Run application
 
-mvn spring-boot
+```
+mvn spring-boot:run
+```
 
 Open browser
 
+```
 http://localhost:8080/api/test
+```
 
 ---
 
@@ -164,7 +207,6 @@ http://localhost:8080/api/test
 
 **Chinmaya Singh**
 
-
 ---
 
 # 📜 License
@@ -172,6 +214,7 @@ http://localhost:8080/api/test
 This project is licensed under the **MIT License**.
 
 Copyright (c) 2026 Chinmaya Kumar Singh
+
 
 ---
 
